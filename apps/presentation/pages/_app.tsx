@@ -1,3 +1,4 @@
+import 'normalize.css';
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -36,7 +37,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to presentation!</title>
+        <title>portable-hooks</title>
       </Head>
       <main className="app">
         <Component {...pageProps} />
