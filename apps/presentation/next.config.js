@@ -1,5 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withNx = require('@nrwl/next/plugins/with-nx');
+const theme = require('shiki/themes/dracula.json');
+
+const { remarkCodeHike } = require('@code-hike/mdx');
+
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [[remarkCodeHike, { theme }]],
+  },
+});
 
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
@@ -12,4 +22,9 @@ const nextConfig = {
   },
 };
 
-module.exports = withNx(nextConfig);
+module.exports = withNx(
+  withMDX({
+    ...nextConfig,
+    pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  })
+);

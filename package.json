@@ -3,12 +3,19 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "lint": "nx lint",
+    "start": "nx serve",
+    "test": "nx test",
+    "nx-latest": "nx migrate latest",
+    "nx-migrate": "yarn install && nx migrate --run-migrations",
+    "postinstall": "husky install"
   },
   "private": true,
   "dependencies": {
+    "@code-hike/mdx": "^0.7.0",
+    "@mdx-js/loader": "^2.1.2",
+    "@next/mdx": "^12.2.3",
     "@nrwl/next": "14.4.3",
     "core-js": "^3.6.5",
     "next": "12.1.6",
@@ -18,6 +25,8 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "7.18.9",
+    "@mdx-js/react": "2.1.2",
     "@nrwl/cli": "14.4.3",
     "@nrwl/cypress": "14.4.3",
     "@nrwl/eslint-plugin-nx": "14.4.3",
@@ -44,13 +53,25 @@
     "eslint-plugin-jsx-a11y": "6.6.0",
     "eslint-plugin-react": "7.30.1",
     "eslint-plugin-react-hooks": "4.6.0",
+    "express": "4.18.1",
+    "husky": "^8.0.1",
     "jest": "27.5.1",
+    "lint-staged": "^13.0.3",
     "nx": "14.4.3",
     "prettier": "^2.6.2",
     "react-test-renderer": "18.2.0",
     "sass": "1.52.3",
+    "stylelint": "^14.9.1",
+    "stylelint-config-css-modules": "4.1.0",
+    "stylelint-config-idiomatic-order": "8.1.0",
+    "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-recommended-scss": "7.0.0",
+    "stylelint-config-standard": "26.0.0",
     "ts-jest": "27.1.4",
     "ts-node": "~10.8.0",
-    "typescript": "~4.7.2"
-  }
+    "tsconfig-paths-webpack-plugin": "3.5.2",
+    "typescript": "~4.7.2",
+    "webpack": "5.73.0"
+  },
+  "packageManager": "yarn@3.2.2"
 }
