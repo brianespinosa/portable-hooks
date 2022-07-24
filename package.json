@@ -7,6 +7,7 @@
     "lint": "nx lint",
     "start": "nx serve",
     "test": "nx test",
+    "new-component": "nx g @nrwl/next:component",
     "nx-latest": "nx migrate latest",
     "nx-migrate": "yarn install && nx migrate --run-migrations",
     "postinstall": "husky install"
@@ -19,6 +20,7 @@
     "@nrwl/next": "14.4.3",
     "core-js": "3.23.5",
     "fathom-client": "3.5.0",
+    "framer-motion": "6.5.1",
     "next": "12.2.0",
     "normalize.css": "8.0.1",
     "react": "18.2.0",

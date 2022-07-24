@@ -4,8 +4,9 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as Fathom from 'fathom-client';
 import Head from 'next/head';
+import { MotionConfig } from 'framer-motion';
 import '@code-hike/mdx/dist/index.css';
-import './styles.css';
+import './_app.scss';
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -27,10 +28,17 @@ function CustomApp({ Component, pageProps }: AppProps) {
     // Record a pageview when route changes
     router.events.on('routeChangeComplete', onRouteChangeComplete);
 
+    // Also focus the slideshow input
+    document
+      .getElementsByClassName('ch-slideshow-range')[0]
+      .getElementsByTagName('input')[0]
+      .focus();
+
     // Unassign event listener (cleanup)
     return () => {
       router.events.off('routeChangeComplete', onRouteChangeComplete);
     };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps -- This empty dependency array is needed to only run on mount
   }, []);
 
@@ -58,7 +66,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <main className="app">
-        <Component {...pageProps} />
+        <MotionConfig transition={{ duration: 1 }}>
+          <Component {...pageProps} />
+        </MotionConfig>
       </main>
     </>
   );
