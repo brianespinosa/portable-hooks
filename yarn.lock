@@ -1452,9 +1452,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@code-hike/mdx@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@code-hike/mdx@npm:0.7.0"
+"@code-hike/mdx@npm:0.7.2":
+  version: 0.7.2
+  resolution: "@code-hike/mdx@npm:0.7.2"
   dependencies:
     hast-util-to-estree: ^1.4.0
     is-plain-obj: ^3.0.0
@@ -1466,7 +1466,7 @@ __metadata:
     unist-util-visit-parents: ^3.0.0
   peerDependencies:
     react: ^16.8.3 || ^17 || ^18
-  checksum: 16930271f31c3f63056ad525be5dd2b24b835c2134caa9f876148b6a319eaf739ddb45e47c9be66c91673bd1cfca641c5fcaa8f46fc32b1cdb54df757cec895e
+  checksum: e260b1fcbbcfc701c8f468051a8fcca798edbef68712b1c7e06cf14db29ab5940f9090ba0f02f7064cd32590a66ba014a3fb1d8faf2959b15f4aad4e75c3dd30
   languageName: node
   linkType: hard
 
@@ -11815,7 +11815,7 @@ __metadata:
   resolution: "portable-hooks@workspace:."
   dependencies:
     "@babel/core": 7.18.9
-    "@code-hike/mdx": ^0.7.0
+    "@code-hike/mdx": 0.7.2
     "@mdx-js/loader": ^2.1.2
     "@mdx-js/react": 2.1.2
     "@next/mdx": ^12.2.3

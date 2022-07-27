@@ -14,7 +14,7 @@
   },
   "private": true,
   "dependencies": {
-    "@code-hike/mdx": "^0.7.0",
+    "@code-hike/mdx": "0.7.2",
     "@mdx-js/loader": "^2.1.2",
     "@next/mdx": "^12.2.3",
     "@nrwl/next": "14.4.3",
