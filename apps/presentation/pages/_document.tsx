@@ -19,7 +19,7 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Sulphur+Point:wght@700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@700&family=Roboto+Condensed:wght@300&display=swap"
             rel="stylesheet"
           />
         </Head>
