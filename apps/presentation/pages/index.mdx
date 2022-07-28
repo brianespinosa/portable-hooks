@@ -1,4 +1,8 @@
-<CH.Slideshow preset="https://codesandbox.io/s/rfdho" code={{minZoom: 1.375}} >
+import Slide from '../components/slide';
+
+<CH.Slideshow preset="https://codesandbox.io/s/react-in-60-seconds-forked-hi99t1" code={{minZoom: 1.375}} >
+
+// preset="https://codesandbox.io/s/rfdho"
 
 ```jsx
 import React from 'react';
@@ -14,7 +18,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(app);
 ```
 
-Some note test
+<Slide />
 
 ---
 
@@ -95,8 +99,8 @@ function MyComponent() {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -122,8 +126,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -149,8 +153,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -178,8 +182,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -212,8 +216,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -245,8 +249,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -279,8 +283,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -319,12 +323,12 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Messi', 'Ronaldo', 'Laspada'];
+const players = ['Martinelli', 'Jesus', 'Balogun'];
 
 const app = (
   <div>
-    <MyComponent name="Messi" />
-    <MyComponent name="Ronaldo" />
+    <MyComponent name="Martinelli" />
+    <MyComponent name="Jesus" />
   </div>
 );
 
@@ -355,7 +359,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Messi', 'Ronaldo', 'Laspada'];
+const players = ['Martinelli', 'Jesus', 'Balogun'];
 
 const app = (
   <div>
@@ -400,7 +404,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Messi', 'Ronaldo', 'Laspada'];
+const players = ['Martinelli', 'Jesus', 'Balogun'];
 
 function MyBox() {
   return <div style={{ border: '8px solid deeppink' }}>// TODO something</div>;
@@ -441,7 +445,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Messi', 'Ronaldo', 'Laspada'];
+const players = ['Martinelli', 'Jesus', 'Balogun'];
 
 function MyBox({ children }) {
   return <div style={{ border: '8px solid deeppink' }}>{children}</div>;

@@ -1,0 +1,25 @@
+._ {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 16/9;
+  background-color: #2b4c7e;
+  font-size: 3vw;
+
+  > * {
+    margin: 0 4vw 4vw;
+  }
+
+  > :last-child {
+    margin-bottom: 8vw;
+  }
+
+  h2 {
+    color: #7c9bcb;
+    font-size: 2em;
+  }
+}
