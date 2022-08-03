@@ -1,7 +1,13 @@
 import Slide from '../components/slide';
 import { setQueryParamIndex, getQueryParamIndex } from '../utils';
 
-<CH.Slideshow preset="https://codesandbox.io/s/rfdho" code={{minZoom: 1.375}} autoFocus start={getQueryParamIndex()} onChange={setQueryParamIndex}>
+<CH.Slideshow
+  preset="https://codesandbox.io/s/rfdho"
+  code={{minZoom: 1.375}}
+  autoFocus
+  start={getQueryParamIndex()}
+  onChange={setQueryParamIndex}
+>
 
 ```jsx
 import React from 'react';
@@ -19,13 +25,39 @@ root.render(app);
 
 <Slide>
 
-## Test
+# Slide One
 
 - One
 - Two
 - Three
 
 </Slide>
+
+---
+
+<Slide>
+
+# Slide Two
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consectetur sunt, molestiae alias possimus quisquam blanditiis. Iure, rem officiis esse dolores aliquam ad magni a commodi molestiae blanditiis soluta.
+
+</Slide>
+
+---
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const app = React.createElement(
+  'h1',
+  { style: { color: 'teal' } },
+  'Hello React'
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(app);
+```
 
 ---
 
