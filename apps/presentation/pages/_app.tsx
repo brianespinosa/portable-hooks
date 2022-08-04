@@ -9,6 +9,7 @@ import DisableSSR from '../components/disable-ssr';
 import { Boundaries } from '@bjeco/blocks';
 import '@code-hike/mdx/dist/index.css';
 import './_app.scss';
+import { title, description } from '../details.json';
 
 // const components = {};
 
@@ -43,7 +44,33 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <Boundaries>
       <Head>
-        <title>portable-hooks</title>
+        {/* Basic HTML Tags */}
+        <title>{title}</title>
+        <meta name="description" content={description} />
+
+        {/* Twitter Card Tags - Discord needs these for the large image previews */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image"
+          content="https://portable-hooks.bje.co/splash.png"
+        />
+
+        {/* Open Graph Tags */}
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content="https://portable-hooks.bje.co/" />
+        <meta
+          property="og:image"
+          content="https://portable-hooks.bje.co/splash.png"
+        />
+        <meta property="og:type" content="website" />
+
+        {/* Viewport */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <link
           rel="apple-touch-icon"
           sizes="180x180"

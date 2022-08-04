@@ -1,6 +1,7 @@
 import Slide from '../components/slide';
 import Logo from '../components/logo';
 import { setQueryParamIndex, getQueryParamIndex } from '../utils';
+import { title, author, authorDepartment } from '../details.json';
 
 <CH.Slideshow
   preset="https://codesandbox.io/s/rfdho"
@@ -28,9 +29,9 @@ root.render(app);
 
 <Logo />
 
-# Portable State Hooks
+# {title}
 
-## Brian Espinosa | Momentive Analysis
+## {author} | {authorDepartment}
 
 </Slide>
 
@@ -38,7 +39,7 @@ root.render(app);
 
 <Slide>
 
-# Slide Two
+## Slide Two
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consectetur sunt, molestiae alias possimus quisquam blanditiis. Iure, rem officiis esse dolores aliquam ad magni a commodi molestiae blanditiis soluta.
 
@@ -48,7 +49,7 @@ Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consec
 
 <Slide>
 
-# Slide Three
+## Slide Three
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, voluptatibus.
 
