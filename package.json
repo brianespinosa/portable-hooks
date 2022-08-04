@@ -19,6 +19,7 @@
     "@mdx-js/loader": "^2.1.2",
     "@next/mdx": "^12.2.3",
     "@nrwl/next": "14.5.2",
+    "clsx": "1.2.1",
     "core-js": "3.23.5",
     "fathom-client": "3.5.0",
     "framer-motion": "6.5.1",
@@ -26,6 +27,7 @@
     "normalize.css": "8.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router-dom": "6.3.0",
     "regenerator-runtime": "0.13.9",
     "tslib": "2.4.0"
   },

@@ -1,4 +1,5 @@
 import Slide from '../components/slide';
+import Logo from '../components/logo';
 import { setQueryParamIndex, getQueryParamIndex } from '../utils';
 
 <CH.Slideshow
@@ -23,13 +24,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(app);
 ```
 
-<Slide>
+<Slide hideFooter>
 
-# Slide One
+<Logo />
 
-- One
-- Two
-- Three
+# Portable State Hooks
 
 </Slide>
 
@@ -40,6 +39,16 @@ root.render(app);
 # Slide Two
 
 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consectetur sunt, molestiae alias possimus quisquam blanditiis. Iure, rem officiis esse dolores aliquam ad magni a commodi molestiae blanditiis soluta.
+
+</Slide>
+
+---
+
+<Slide>
+
+# Slide Three
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, voluptatibus.
 
 </Slide>
 

@@ -5,7 +5,7 @@ export function setQueryParamIndex({ index }) {
 export function getQueryParamIndex() {
   if (typeof window !== 'undefined') {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('index');
+    return Number(urlParams.get('index')) || 0;
   } else {
     return 0;
   }
