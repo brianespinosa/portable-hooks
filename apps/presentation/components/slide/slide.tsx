@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import styles from './slide.module.scss';
-import { title, date, event } from '../../details.json';
+import details from '../../details.json';
+
+const { title, date, event } = details;
 
 export interface SlideProps {
   children: React.ReactNode;

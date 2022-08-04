@@ -1,60 +1,4 @@
-import Slide from '../components/slide';
-import Logo from '../components/logo';
-import { setQueryParamIndex, getQueryParamIndex } from '../utils';
-import details from '../details.json';
-
-<CH.Slideshow
-  preset="https://codesandbox.io/s/rfdho"
-  code={{minZoom: 1.375}}
-  autoFocus
-  start={getQueryParamIndex()}
-  onChange={setQueryParamIndex}
->
-
-```jsx src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-const app = React.createElement(
-  'h1',
-  { style: { color: 'teal' } },
-  'Hello React'
-);
-
-ReactDOM.render(app, document.getElementById('root'));
-```
-
-<Slide hideFooter>
-
-<Logo />
-
-# {details.title}
-
-## {details.author} | {details.authorDepartment}
-
-</Slide>
-
----
-
-<Slide>
-
-## Slide Two
-
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consectetur sunt, molestiae alias possimus quisquam blanditiis. Iure, rem officiis esse dolores aliquam ad magni a commodi molestiae blanditiis soluta.
-
-</Slide>
-
----
-
-<Slide>
-
-## Slide Three
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, voluptatibus.
-
-</Slide>
-
----
+<CH.Slideshow preset="https://codesandbox.io/s/rfdho" code={{minZoom: 0.5}} autoFocus>
 
 ```jsx src/index.js
 import React from 'react';
@@ -147,8 +91,8 @@ function MyComponent() {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -173,8 +117,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -199,8 +143,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -227,8 +171,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -260,8 +204,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -292,8 +236,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -325,8 +269,8 @@ function MyComponent({ name }) {
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -364,12 +308,12 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Martinelli', 'Saka', 'G. Jesus'];
+const players = ['Messi', 'Ronaldo', 'Laspada'];
 
 const app = (
   <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
+    <MyComponent name="Messi" />
+    <MyComponent name="Ronaldo" />
   </div>
 );
 
@@ -399,7 +343,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Martinelli', 'Saka', 'G. Jesus'];
+const players = ['Messi', 'Ronaldo', 'Laspada'];
 
 const app = (
   <div>
@@ -443,7 +387,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Martinelli', 'Saka', 'G. Jesus'];
+const players = ['Messi', 'Ronaldo', 'Laspada'];
 
 function MyBox() {
   return <div style={{ border: '8px solid deeppink' }}>// TODO something</div>;
@@ -483,7 +427,7 @@ function MyComponent({ name }) {
   );
 }
 
-const players = ['Martinelli', 'Saka', 'G. Jesus'];
+const players = ['Messi', 'Ronaldo', 'Laspada'];
 
 function MyBox({ children }) {
   return <div style={{ border: '8px solid deeppink' }}>{children}</div>;

@@ -9,7 +9,9 @@ import DisableSSR from '../components/disable-ssr';
 import { Boundaries } from '@bjeco/blocks';
 import '@code-hike/mdx/dist/index.css';
 import './_app.scss';
-import { title, description } from '../details.json';
+import details from '../details.json';
+
+const { title, description } = details;
 
 // const components = {};
 
@@ -52,6 +54,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:creator" content="@brianespinosa" />
         <meta
           name="twitter:image"
           content="https://portable-hooks.bje.co/splash.png"
