@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styles from './slide.module.scss';
+import { title, date, event } from '../../details.json';
 
 export interface SlideProps {
   children: React.ReactNode;
@@ -16,7 +17,9 @@ export function Slide({ children, hideFooter = false }: SlideProps) {
         style={{ zIndex: 10 }} // This is to make sure the first section is always on top
       >
         {!hideFooter && (
-          <footer>Portable State Hooks | Innovate Summit 2022</footer>
+          <footer>
+            {title} | {event} {date}
+          </footer>
         )}
         {children}
       </motion.section>
