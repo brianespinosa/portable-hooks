@@ -1,8 +1,14 @@
 import Slide from '../components/slide';
+import Logo from '../components/logo';
+import { setQueryParamIndex, getQueryParamIndex } from '../utils';
 
-<CH.Slideshow preset="https://codesandbox.io/s/react-in-60-seconds-forked-hi99t1" code={{minZoom: 1.375}} >
-
-// preset="https://codesandbox.io/s/rfdho"
+<CH.Slideshow
+  preset="https://codesandbox.io/s/rfdho"
+  code={{minZoom: 1.375}}
+  autoFocus
+  start={getQueryParamIndex()}
+  onChange={setQueryParamIndex}
+>
 
 ```jsx
 import React from 'react';
@@ -18,7 +24,51 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(app);
 ```
 
-<Slide />
+<Slide hideFooter>
+
+<Logo />
+
+# Portable State Hooks
+
+## Brian Espinosa | Momentive Analysis
+
+</Slide>
+
+---
+
+<Slide>
+
+# Slide Two
+
+Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus minus consectetur sunt, molestiae alias possimus quisquam blanditiis. Iure, rem officiis esse dolores aliquam ad magni a commodi molestiae blanditiis soluta.
+
+</Slide>
+
+---
+
+<Slide>
+
+# Slide Three
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, voluptatibus.
+
+</Slide>
+
+---
+
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+const app = React.createElement(
+  'h1',
+  { style: { color: 'teal' } },
+  'Hello React'
+);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(app);
+```
 
 ---
 

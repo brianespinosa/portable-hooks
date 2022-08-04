@@ -8,6 +8,7 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [[remarkCodeHike, { theme }]],
+    providerImportSource: '@mdx-js/react',
   },
 });
 

@@ -1,14 +1,27 @@
+import { motion } from 'framer-motion';
 import styles from './slide.module.scss';
 
-/* eslint-disable-next-line */
-export interface SlideProps {}
+export interface SlideProps {
+  children: React.ReactNode;
+  hideFooter?: boolean;
+}
 
-export function Slide(props: SlideProps) {
+export function Slide({ children, hideFooter = false }: SlideProps) {
   return (
-    <section className={styles._}>
-      <h2>Title</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </section>
+    <>
+      <motion.section
+        className={styles._}
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        style={{ zIndex: 10 }} // This is to make sure the first section is always on top
+      >
+        {!hideFooter && (
+          <footer>Portable State Hooks | Innovate Summit 2022</footer>
+        )}
+        {children}
+      </motion.section>
+      <section className={styles._}></section>
+    </>
   );
 }
 

@@ -1,12 +1,16 @@
 import 'normalize.css';
+// import { MDXProvider } from '@mdx-js/react';
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as Fathom from 'fathom-client';
 import Head from 'next/head';
-import { MotionConfig } from 'framer-motion';
+import DisableSSR from '../components/disable-ssr';
+import { Boundaries } from '@bjeco/blocks';
 import '@code-hike/mdx/dist/index.css';
 import './_app.scss';
+
+// const components = {};
 
 function CustomApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -28,12 +32,6 @@ function CustomApp({ Component, pageProps }: AppProps) {
     // Record a pageview when route changes
     router.events.on('routeChangeComplete', onRouteChangeComplete);
 
-    // Also focus the slideshow input
-    document
-      .getElementsByClassName('ch-slideshow-range')[0]
-      .getElementsByTagName('input')[0]
-      .focus();
-
     // Unassign event listener (cleanup)
     return () => {
       router.events.off('routeChangeComplete', onRouteChangeComplete);
@@ -43,7 +41,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <>
+    <Boundaries>
       <Head>
         <title>portable-hooks</title>
         <link
@@ -65,12 +63,12 @@ function CustomApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <main className="app">
-        <MotionConfig transition={{ duration: 1 }}>
+      <DisableSSR>
+        <main className="app">
           <Component {...pageProps} />
-        </MotionConfig>
-      </main>
-    </>
+        </main>
+      </DisableSSR>
+    </Boundaries>
   );
 }
 
