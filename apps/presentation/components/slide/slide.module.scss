@@ -10,12 +10,33 @@
   background-color: #2b4c7e;
   font-size: 3.5vw;
 
-  > * {
-    margin: 0 4vw 2vw;
+  > :first-child {
+    margin-top: 8vw;
   }
 
   > :last-child {
     margin-bottom: 8vw;
+  }
+
+  &.small {
+    left: auto;
+    max-width: 33.7vw;
+    height: 56vw;
+    justify-content: flex-start;
+    aspect-ratio: initial;
+    font-size: 3vw;
+
+    > :first-child {
+      margin-top: 4vw;
+    }
+
+    > :last-child {
+      margin-bottom: 4vw;
+    }
+  }
+
+  > * {
+    margin: 0 4vw 2vw;
   }
 
   h1,

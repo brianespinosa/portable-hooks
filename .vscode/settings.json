@@ -34,6 +34,10 @@
   },
   "git.autofetch": true,
   "prettier.requireConfig": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
   // "jest.coverageColors": {
   //   "covered": "rgba(9, 156, 65, 1)",
   //   "uncovered": "rgba(0, 0, 0, 1)",
