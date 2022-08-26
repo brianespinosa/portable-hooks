@@ -10,6 +10,7 @@ import { Boundaries } from '@bjeco/blocks';
 import '@code-hike/mdx/dist/index.css';
 import './_app.scss';
 import details from '../details.json';
+import { DevMessage } from '@local/dev-components';
 
 const { title, description } = details;
 
@@ -45,6 +46,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
 
   return (
     <Boundaries>
+      <DevMessage />
       <Head>
         {/* Basic HTML Tags */}
         <title>{title}</title>
