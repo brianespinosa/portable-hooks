@@ -45,16 +45,20 @@ export function Drawing(props: DrawingProps) {
   return (
     <ReactFlow
       className={styles._}
-      nodes={nodes}
       edges={edges}
-      fitViewOptions={fitViewOptions}
       fitView
-      zoomOnScroll={false}
-      zoomOnPinch={false}
-      zoomOnDoubleClick={false}
+      fitViewOptions={fitViewOptions}
+      nodes={nodes}
       panOnDrag={false}
       panOnScroll={false}
       preventScrolling
+      proOptions={{
+        account: 'paid-pro',
+        hideAttribution: true,
+      }}
+      zoomOnDoubleClick={false}
+      zoomOnPinch={false}
+      zoomOnScroll={false}
     />
   );
 }
