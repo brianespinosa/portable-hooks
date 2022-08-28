@@ -44,7 +44,7 @@ const fitViewOptions: FitViewOptions = {
 export function Drawing(props: DrawingProps) {
   return (
     <ReactFlow
-      className={styles._}
+      className={styles['_']}
       edges={edges}
       fitView
       fitViewOptions={fitViewOptions}

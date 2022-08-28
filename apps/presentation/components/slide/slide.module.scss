@@ -11,11 +11,19 @@
   font-size: 3.5vw;
 
   > :first-child {
-    margin-top: 8vw;
+    margin-top: 2em;
   }
 
   > :last-child {
-    margin-bottom: 8vw;
+    margin-bottom: 2em;
+  }
+
+  & + ._ {
+    width: 100%;
+  }
+
+  > * {
+    margin: 0 4vw 2vw;
   }
 
   &.small {
@@ -24,19 +32,19 @@
     height: 56vw;
     justify-content: flex-start;
     aspect-ratio: initial;
-    font-size: 3vw;
+    font-size: 2.25em;
 
     > :first-child {
-      margin-top: 4vw;
+      margin-top: 2vw;
     }
 
     > :last-child {
-      margin-bottom: 4vw;
+      margin-bottom: 2vw;
     }
-  }
 
-  > * {
-    margin: 0 4vw 2vw;
+    > * {
+      margin: 0 2vw 1vw;
+    }
   }
 
   h1,
@@ -44,13 +52,21 @@
     color: #7c9bcb;
   }
 
-  // h2 {
-  //   font-size: 2em;
-  // }
+  h2 {
+    // font-size: 1.25em;
+  }
 
   h1 + h2 {
     color: #fff;
     font-size: 1em;
+  }
+
+  code {
+    padding: 0 0.25em;
+    border: 1px solid #000;
+    background-color: rgb(40 42 54);
+    border-radius: 0.25em;
+    color: #7c9bcb;
   }
 
   footer {

@@ -24,7 +24,7 @@ export function Slide({
         initial={{ opacity: 0 }}
         style={{ zIndex: 10 }} // This is to make sure the first section is always on top
       >
-        {!hideFooter ||
+        {hideFooter ||
           (!isSmall && (
             <footer>
               {title} | {event} {date}

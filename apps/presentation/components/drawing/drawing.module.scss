@@ -1,7 +1,13 @@
 ._ {
-  margin: 0;
+  &:global.react-flow {
+    margin: 0;
+  }
 
   :global {
+    // &.react-flow {
+    //   margin: 0;
+    // }
+
     .react-flow__edge-path {
       stroke: #7c9bcb;
       stroke-width: 2;

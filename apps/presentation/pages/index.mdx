@@ -39,9 +39,13 @@ ReactDOM.render(app, document.getElementById('root'));
 
 <Slide>
 
-## Q1
+## Hello!
 
-How many of you work with React on a daily basis?
+My name is Brian Espinosa and I am the Director of Engineering for Momentive Analysis.
+
+- Joined Momentive March 2022
+- Using React since v0.13.0
+- Live in Tacoma, WA
 
 </Slide>
 
@@ -49,11 +53,76 @@ How many of you work with React on a daily basis?
 
 <Slide>
 
-## Hello!
+# Getting Started
 
-My name is Brian Espinosa and I am the Senior Engineering Manager of Momentive Analysis.
+## Before we go anywhere... where are we?
 
 </Slide>
+
+Understand the problem space before we jump in.
+
+---
+
+<Slide>
+
+## Do These Challenges Sound Familar?
+
+- Need to access internal component state or methods
+- Product implementation details require continually increasing component props and complexity
+- Massive unit test suites with difficult logic to isolate prop and state functionality
+- Difficulty composing and reusing across different products due to divergent use cases inside components
+
+</Slide>
+
+Open with question of how many people use React on a daily basis. Ask for hands to stay up with all slide questions.
+
+---
+
+<Slide>
+
+## Why Is This a Problem?
+
+Significant impact on productivity, scale, and cost. 💸
+
+- Multiple component implementations
+- Competing implementation details
+- Less stability at scale
+- Work is slower in complex components
+- This is not fun work! 😞
+
+</Slide>
+
+---
+
+<Slide>
+
+## Let's Fix This!
+
+All of these problems can be significantly reduced or eliminated completely with portable state hooks. 🙌
+
+- Patterns for safely sharing component state
+- Push implementation details into applications
+- Focus on reusability
+- Fuctional programming principles
+
+</Slide>
+
+For non-React devs, stick around as everyone will reach a better understanding of some of the problems our front end counterparts are facing.
+
+---
+
+<Slide isSmall>
+
+## Class Components
+
+- State belongs to class
+- Unit tests cover all: state, methods, UI
+
+Also we had `this.props` mutability bugs
+
+</Slide>
+
+FIRST CODE SLIDE
 
 ---
 
@@ -70,6 +139,17 @@ const app = React.createElement(
 ReactDOM.render(app, document.getElementById('root'));
 ```
 
+<Slide isSmall>
+
+## Class Components
+
+- State belongs to class
+- Unit tests cover all: state, methods, UI
+
+Also we had `this.props` mutability bugs
+
+</Slide>
+
 React provides a createElement function to declare what we want to render to the DOM
 
 ---
@@ -82,6 +162,16 @@ const app = <h1 style={{ color: 'teal' }}>Hello React</h1>;
 
 ReactDOM.render(app, document.getElementById('root'));
 ```
+
+<Slide isSmall>
+
+## Class Components
+
+- State belongs to class
+- `this.props` mutability bugs
+- Unit tests cover all: state, methods, UI
+
+</Slide>
 
 But instead of using createElement directly you can use JSX.
 
