@@ -17,6 +17,21 @@ code {
   font-family: 'Dank Mono', monospace;
 }
 
+ul {
+  padding-left: 0.5em;
+  font-size: 0.875em;
+
+  li {
+    padding-left: 1em;
+    background: url('/arrow.svg') no-repeat left 0.25em;
+    list-style: none;
+
+    & + li {
+      margin-top: 0.25em;
+    }
+  }
+}
+
 .ch-slideshow {
   margin: 1em;
 
