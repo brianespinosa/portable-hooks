@@ -5,24 +5,23 @@ import { setQueryParamIndex, getQueryParamIndex } from '../utils';
 import details from '../details.json';
 
 <CH.Slideshow
-  preset="https://codesandbox.io/s/rfdho"
-  code={{minZoom: 1.375}}
+  preset="https://codesandbox.io/s/portable-hooks-l9xy3z"
+  code={{minZoom: 1.75}}
   autoFocus
   start={getQueryParamIndex()}
   onChange={setQueryParamIndex}
 >
 
-```jsx src/index.js
+```jsx src/Tags.js
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const app = React.createElement(
-  'h1',
-  { style: { color: 'teal' } },
-  'Hello React'
-);
+class Tags extends React.Component {
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
 
-ReactDOM.render(app, document.getElementById('root'));
+export default Tags;
 ```
 
 <Slide hideFooter>
@@ -111,6 +110,18 @@ For non-React devs, stick around as everyone will reach a better understanding o
 
 ---
 
+```jsx src/Tags.js
+import React from 'react';
+
+class Tags extends React.Component {
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
+
+export default Tags;
+```
+
 <Slide isSmall>
 
 ## Class Components
@@ -126,17 +137,18 @@ FIRST CODE SLIDE
 
 ---
 
-```jsx src/index.js
+```jsx src/Tags.js focus=4
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-const app = React.createElement(
-  'h1',
-  { style: { color: 'teal' } },
-  'Hello React'
-);
+class Tags extends React.Component {
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
 
-ReactDOM.render(app, document.getElementById('root'));
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
+
+export default Tags;
 ```
 
 <Slide isSmall>
@@ -150,17 +162,37 @@ Also we had `this.props` mutability bugs
 
 </Slide>
 
-React provides a createElement function to declare what we want to render to the DOM
-
 ---
 
-```jsx src/index.js focus=4
+```jsx src/Tags.js focus=7:21
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { omitIndexes, move } from 'ramda-adjunct';
 
-const app = <h1 style={{ color: 'teal' }}>Hello React</h1>;
+class Tags extends React.Component {
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
 
-ReactDOM.render(app, document.getElementById('root'));
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
+
+export default Tags;
 ```
 
 <Slide isSmall>
@@ -168,16 +200,259 @@ ReactDOM.render(app, document.getElementById('root'));
 ## Class Components
 
 - State belongs to class
-- `this.props` mutability bugs
 - Unit tests cover all: state, methods, UI
+
+Also we had `this.props` mutability bugs
 
 </Slide>
 
-But instead of using createElement directly you can use JSX.
+---
+
+```jsx src/Tags.js focus=5:10,14:21
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+class Tags extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
+
+  handleLabelChange(event) {
+    this.setState({ newLabel: event.target.value });
+  }
+
+  handleSubmit(event) {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  }
+
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
+
+export default Tags;
+```
+
+<Slide isSmall>
+
+## Class Components
+
+- State belongs to class
+- Unit tests cover all: state, methods, UI
+
+Also we had `this.props` mutability bugs
+
+</Slide>
 
 ---
 
-```jsx src/index.js focus=4:10
+```jsx src/Tags.js focus=39:41
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+class Tags extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
+
+  handleLabelChange(event) {
+    this.setState({ newLabel: event.target.value });
+  }
+
+  handleSubmit(event) {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  }
+
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  render() {
+    return <h1>Tags</h1>;
+  }
+}
+
+export default Tags;
+```
+
+---
+
+```jsx src/Tags.js focus=41:50
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+class Tags extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
+
+  handleLabelChange(event) {
+    this.setState({ newLabel: event.target.value });
+  }
+
+  handleSubmit(event) {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  }
+
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+---
+
+```jsx src/Tags.js focus=39:67
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+class Tags extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
+
+  handleLabelChange(event) {
+    this.setState({ newLabel: event.target.value });
+  }
+
+  handleSubmit(event) {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  }
+
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        {this.state.tags.map((name, i) => (
+          <span key={i}>
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </span>
+        ))}
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+---
+
+```jsx src/Tags.js focus=4:10
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -208,7 +483,7 @@ How many of you work with React on a daily basis?
 
 ---
 
-```jsx src/index.js focus=4[10:20],12:17
+```jsx src/Tags.js focus=4[10:20],12:17
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -234,7 +509,7 @@ Now you can use that function in JSX.
 
 ---
 
-```jsx src/index.js focus=14[18:29],15[18:31]
+```jsx src/Tags.js focus=14[18:29],15[18:31]
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -258,61 +533,84 @@ ReactDOM.render(app, document.getElementById('root'));
 
 You can assign attributes
 
----
-
-```jsx src/index.js focus=4[22:29],14[18:29],15[18:31]
+```jsx src/Tags.js
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { omitIndexes, move } from 'ramda-adjunct';
 
-function MyComponent({ name }) {
-  return (
-    <div>
-      <button>Hello</button>
-    </div>
-  );
+class Tags extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleLabelChange = this.handleLabelChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  state = { tags: ['cat', 'dog', 'bird', 'monkey', 'lion'], newLabel: '' };
+
+  addTag(name) {
+    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({ tags: omitIndexes([index], this.state.tags) });
+  }
+
+  moveTagForward(index) {
+    this.setState({ tags: move(index, index - 1, this.state.tags) });
+  }
+
+  moveTagBackward(index) {
+    this.setState({ tags: move(index, index + 1, this.state.tags) });
+  }
+
+  handleLabelChange(event) {
+    this.setState({ newLabel: event.target.value });
+  }
+
+  handleSubmit(event) {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        {this.state.tags.map((name, i) => (
+          <span key={i}>
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </span>
+        ))}
+      </>
+    );
+  }
 }
 
-const app = (
-  <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
-  </div>
-);
-
-ReactDOM.render(app, document.getElementById('root'));
-```
-
-And React will pass them to the component as parameters
-
----
-
-```jsx src/index.js focus=4[22:29],7
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-function MyComponent({ name }) {
-  return (
-    <div>
-      <button>{name}</button>
-    </div>
-  );
-}
-
-const app = (
-  <div>
-    <MyComponent name="Martinelli" />
-    <MyComponent name="Saka" />
-  </div>
-);
-
-ReactDOM.render(app, document.getElementById('root'));
+export default Tags;
 ```
 
 Inside JSX, you use curly braces to wrap dynamic data
 
 ---
 
-```jsx src/index.js focus=5,9
+```jsx src/Tags.js focus=5,9
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -340,7 +638,7 @@ In fact you can wrap any javascript expression.
 
 ---
 
-```jsx src/index.js focus=7:9,13[15:35]
+```jsx src/Tags.js focus=7:9,13[15:35]
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -373,7 +671,7 @@ To add event listeners you pass a function to the corresponding attribute
 
 ---
 
-```jsx src/index.js focus=5
+```jsx src/Tags.js focus=5
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -405,7 +703,7 @@ To add state to a component there's the useState function from React.
 
 ---
 
-```jsx src/index.js focus=5,7:9
+```jsx src/Tags.js focus=5,7:9
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -438,7 +736,7 @@ It gives you a function to update the state.
 
 ---
 
-```jsx src/index.js focus=5,7:9,13,14
+```jsx src/Tags.js focus=5,7:9,13,14
 
 ```
 
@@ -446,7 +744,7 @@ When you call it, React will know it needs to re-render the component.
 
 ---
 
-```jsx src/index.js focus=19
+```jsx src/Tags.js focus=19
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -481,7 +779,7 @@ To render a list
 
 ---
 
-```jsx src/index.js focus=19,23[6:34],24,25[1:6]
+```jsx src/Tags.js focus=19,23[6:34],24,25[1:6]
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -517,7 +815,7 @@ you can map each list item to an element using javascript.
 
 ---
 
-```jsx src/index.js focus=24[38:54]
+```jsx src/Tags.js focus=24[38:54]
 
 ```
 
@@ -525,7 +823,7 @@ React only needs a unique key for each element, to find out when something chang
 
 ---
 
-```jsx src/index.js focus=21:27,30,34
+```jsx src/Tags.js focus=21:27,30,34
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -565,7 +863,7 @@ If you want to compose components together
 
 ---
 
-```jsx src/index.js focus=21[16:27],24,30:34
+```jsx src/Tags.js focus=21[16:27],24,30:34
 import React from 'react';
 import ReactDOM from 'react-dom';
 

@@ -24,6 +24,7 @@ ul {
   li {
     padding-left: 1em;
     background: url('/arrow.svg') no-repeat left 0.25em;
+    background-size: 0.625em 0.625em;
     list-style: none;
 
     & + li {
