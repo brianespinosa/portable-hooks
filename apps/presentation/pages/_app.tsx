@@ -36,9 +36,33 @@ function CustomApp({ Component, pageProps }: AppProps) {
     // Record a pageview when route changes
     router.events.on('routeChangeComplete', onRouteChangeComplete);
 
+    function focusOnKeyEvent(event: KeyboardEvent) {
+      if (event.defaultPrevented) {
+        return;
+      }
+      const name = event.key;
+      const isCtrl = event.ctrlKey;
+      const isShift = event.shiftKey;
+
+      if (isCtrl && isShift && name === '/') {
+        console.log({ event });
+
+        const input = document.querySelector(
+          'input[type="range"]'
+        ) as HTMLElement | null;
+
+        if (input !== null) {
+          input.focus();
+        }
+      }
+    }
+
+    window.addEventListener('keydown', focusOnKeyEvent, false);
+
     // Unassign event listener (cleanup)
     return () => {
       router.events.off('routeChangeComplete', onRouteChangeComplete);
+      window.removeEventListener('keydown', focusOnKeyEvent);
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps -- This empty dependency array is needed to only run on mount

@@ -6,7 +6,7 @@ import details from '../../details.json';
 const { title, date, event } = details;
 
 export interface SlideProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   hideFooter?: boolean;
   isSmall?: boolean;
 }
@@ -21,7 +21,7 @@ export function Slide({
       <motion.section
         className={clsx(styles._, isSmall && styles.small)}
         animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
+        initial={{ opacity: isSmall ? 1 : 0 }}
         style={{ zIndex: 10 }} // This is to make sure the first section is always on top
       >
         {hideFooter ||

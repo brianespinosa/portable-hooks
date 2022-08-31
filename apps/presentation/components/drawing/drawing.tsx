@@ -12,33 +12,74 @@ export interface DrawingProps {}
 
 const nodes: Node[] = [
   {
-    id: '1',
+    id: 'A',
     type: 'input',
-    data: { label: 'Input Node' },
-    position: { x: 250, y: 25 },
+    data: { label: 'Class Component' },
+    position: { x: 0, y: 0 },
+    selectable: false,
+    style: {
+      width: 170,
+      height: 292,
+    },
   },
-
+  {
+    id: '1',
+    data: { label: 'State' },
+    position: { x: 10, y: 40 },
+    parentNode: 'A',
+    extent: 'parent',
+    selectable: false,
+  },
   {
     id: '2',
-    // you can also pass a React component as a label
-    data: { label: <div>Default Node</div> },
-    position: { x: 100, y: 125 },
+    data: { label: 'Methods' },
+    position: { x: 10, y: 90 },
+    parentNode: 'A',
+    extent: 'parent',
+    selectable: false,
+    style: {
+      height: 142,
+    },
   },
   {
-    id: '3',
-    type: 'output',
-    data: { label: 'Output Node' },
-    position: { x: 250, y: 250 },
+    id: 'a',
+    data: { label: 'Handlers' },
+    position: { x: 10, y: 40 },
+    parentNode: '2',
+    extent: 'parent',
+    selectable: false,
+    style: {
+      width: 130,
+    },
+  },
+  {
+    id: 'b',
+    data: { label: 'Setters' },
+    position: { x: 10, y: 90 },
+    parentNode: '2',
+    extent: 'parent',
+    selectable: false,
+    style: {
+      width: 130,
+    },
+  },
+  {
+    id: '4',
+    data: { label: 'Render' },
+    position: { x: 10, y: 240 },
+    parentNode: 'A',
+    extent: 'parent',
+    selectable: false,
   },
 ];
 
 const edges: Edge[] = [
-  { id: 'e1-2', source: '1', target: '2' },
-  { id: 'e2-3', source: '2', target: '3', animated: true },
+  // { id: 'e1-2', source: '2', target: '3' },
+  // { id: 'e2-3', source: '2', target: '3', animated: true },
 ];
 
 const fitViewOptions: FitViewOptions = {
-  padding: 0.5,
+  padding: 0.3,
 };
 
 export function Drawing(props: DrawingProps) {
