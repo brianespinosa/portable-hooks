@@ -50,6 +50,7 @@
     }
 
     .react-flow__handle {
+      display: none;
       width: 4px;
       height: 4px;
       border: 2px solid #7c9bcb;
@@ -58,6 +59,16 @@
 
       &.connectable {
         cursor: crosshair;
+      }
+    }
+
+    .react-flow__node.parent {
+      border-style: dotted;
+
+      &.react-flow__node-input {
+        border-style: dashed;
+        border-radius: 1em;
+        font-size: 0.5em;
       }
     }
 
@@ -71,9 +82,9 @@
       border-style: solid;
       border-color: #7c9bcb;
       background: #2b4c7e;
-      border-radius: 3px;
+      border-radius: 0.25em;
       color: #fff;
-      font-size: 1rem;
+      font-size: 0.375em;
       text-align: center;
 
       &.selected {
@@ -96,7 +107,7 @@
     }
 
     .react-flow__node-group {
-      border-color: #1a192b;
+      border-style: dotted;
       background: rgb(240 240 240 / 25%);
     }
 
