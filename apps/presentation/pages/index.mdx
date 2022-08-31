@@ -12,7 +12,7 @@ import details from '../details.json';
   onChange={setQueryParamIndex}
 >
 
-```jsx src/Tags.js
+```jsx src/Tag.js
 import React from 'react';
 
 class Tags extends React.Component {
@@ -122,7 +122,7 @@ Understand the problem space before we jump in.
 
 ---
 
-```jsx src/Tags.js
+```jsx src/Tag.js
 import React from 'react';
 
 class Tags extends React.Component {
@@ -153,7 +153,7 @@ FIRST CODE SLIDE
 
 ---
 
-```jsx src/Tags.js focus=4
+```jsx src/Tag.js focus=4
 import React from 'react';
 
 class Tags extends React.Component {
@@ -184,7 +184,7 @@ export default Tags;
 
 ---
 
-```jsx src/Tags.js focus=7:21
+```jsx src/Tag.js focus=7:33
 import React from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 
@@ -192,19 +192,31 @@ class Tags extends React.Component {
   state = { tags: [], newLabel: '' };
 
   addTag(name) {
-    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
   }
 
   removeTagAtIndex(index) {
-    this.setState({ tags: omitIndexes([index], this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
   }
 
   moveTagForward(index) {
-    this.setState({ tags: move(index, index - 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
   }
 
   moveTagBackward(index) {
-    this.setState({ tags: move(index, index + 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
   }
 
   render() {
@@ -232,7 +244,7 @@ export default Tags;
 
 ---
 
-```jsx src/Tags.js focus=23:30
+```jsx src/Tag.js focus=35:42
 import React from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 
@@ -240,23 +252,35 @@ class Tags extends React.Component {
   state = { tags: [], newLabel: '' };
 
   addTag(name) {
-    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
   }
 
   removeTagAtIndex(index) {
-    this.setState({ tags: omitIndexes([index], this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
   }
 
   moveTagForward(index) {
-    this.setState({ tags: move(index, index - 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
   }
 
   moveTagBackward(index) {
-    this.setState({ tags: move(index, index + 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
   }
 
   handleLabelChange = (event) => {
-    this.setState({ newLabel: event.target.value });
+    this.setState({ ...this.state, newLabel: event.target.value });
   };
 
   handleSubmit = (event) => {
@@ -289,7 +313,7 @@ export default Tags;
 
 ---
 
-```jsx src/Tags.js focus=32:34
+```jsx src/Tag.js focus=44:46
 import React from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 
@@ -297,23 +321,35 @@ class Tags extends React.Component {
   state = { tags: [], newLabel: '' };
 
   addTag(name) {
-    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
   }
 
   removeTagAtIndex(index) {
-    this.setState({ tags: omitIndexes([index], this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
   }
 
   moveTagForward(index) {
-    this.setState({ tags: move(index, index - 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
   }
 
   moveTagBackward(index) {
-    this.setState({ tags: move(index, index + 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
   }
 
   handleLabelChange = (event) => {
-    this.setState({ newLabel: event.target.value });
+    this.setState({ ...this.state, newLabel: event.target.value });
   };
 
   handleSubmit = (event) => {
@@ -331,40 +367,43 @@ export default Tags;
 
 ---
 
-```jsx src/Tags.js focus=43:52
+```jsx src/Tag.js focus=46:55
 import React from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 
 class Tags extends React.Component {
   state = { tags: [], newLabel: '' };
 
-  handleLabelChange(event) {
-    this.setState({ newLabel: event.target.value });
-  }
-
-  handleSubmit(event) {
-    this.addTag(this.state.newLabel);
-    event.preventDefault();
-  }
-
   addTag(name) {
-    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
   }
 
   removeTagAtIndex(index) {
-    this.setState({ tags: omitIndexes([index], this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
   }
 
   moveTagForward(index) {
-    this.setState({ tags: move(index, index - 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
   }
 
   moveTagBackward(index) {
-    this.setState({ tags: move(index, index + 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
   }
 
   handleLabelChange = (event) => {
-    this.setState({ newLabel: event.target.value });
+    this.setState({ ...this.state, newLabel: event.target.value });
   };
 
   handleSubmit = (event) => {
@@ -393,7 +432,7 @@ export default Tags;
 
 ---
 
-```jsx src/Tags.js focus=53:74
+```jsx src/Tag.js focus=56:77
 import React from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 import { AnimatePresence, m } from 'framer-motion';
@@ -401,33 +440,36 @@ import { AnimatePresence, m } from 'framer-motion';
 class Tags extends React.Component {
   state = { tags: [], newLabel: '' };
 
-  handleLabelChange(event) {
-    this.setState({ newLabel: event.target.value });
-  }
-
-  handleSubmit(event) {
-    this.addTag(this.state.newLabel);
-    event.preventDefault();
-  }
-
   addTag(name) {
-    this.setState({ tags: [...this.state.tags, name], newLabel: '' });
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
   }
 
   removeTagAtIndex(index) {
-    this.setState({ tags: omitIndexes([index], this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
   }
 
   moveTagForward(index) {
-    this.setState({ tags: move(index, index - 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
   }
 
   moveTagBackward(index) {
-    this.setState({ tags: move(index, index + 1, this.state.tags) });
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
   }
 
   handleLabelChange = (event) => {
-    this.setState({ newLabel: event.target.value });
+    this.setState({ ...this.state, newLabel: event.target.value });
   };
 
   handleSubmit = (event) => {
@@ -459,7 +501,7 @@ class Tags extends React.Component {
                 ‹
               </button>
               <button
-                disabled={this.state.tags.length === i + 1}
+                disabled={this.state.tags?.length === i + 1}
                 onClick={() => this.moveTagBackward(i)}
               >
                 ›
@@ -474,6 +516,1549 @@ class Tags extends React.Component {
 }
 
 export default Tags;
+```
+
+---
+
+```jsx src/Tag.js
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+class Tags extends React.Component {
+  state = { tags: [], newLabel: '' };
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        <AnimatePresence>
+          {this.state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={this.state.tags?.length === i + 1}
+                onClick={() => this.moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+        </AnimatePresence>
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=6
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+class Tags extends React.Component {
+  state = { tags: [], newLabel: '' };
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        <AnimatePresence>
+          {this.state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={this.state.tags?.length === i + 1}
+                onClick={() => this.moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+        </AnimatePresence>
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=1,6:9
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+class Tags extends React.Component {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        <AnimatePresence>
+          {this.state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={this.state.tags?.length === i + 1}
+                onClick={() => this.moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+        </AnimatePresence>
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=5
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=11:25
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=27:34
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleLabelChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=38:68
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleLabelChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={state.newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {state.tags?.length &&
+          state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={state.tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State hook belongs to render
+- Utility setting functions
+- Event handlers
+
+</Slide>
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleLabelChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={state.newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {state.tags?.length &&
+          state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={state.tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+<Slide isSmall>
+
+## Most Common Function Component
+
+- Uncontrolled with internal state and some props
+- Prop surface area continues to grow as we need to give access inside the component
+- Logic becomes increasingly complex once we have a 🔥 Propocalypse™
+- Have to balance functionality both controlled and uncontrolled component styles
+- Begin to rely on anti-patterns passing state back up the tree
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## What If We Only Made Controlled Components?
+
+- Component logic becomes more simple
+- Chances for a Propocalypse™ are reduced
+- But... how do we still help developers do their jobs?
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=6:9
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleLabelChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={state.newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {state.tags?.length &&
+          state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={state.tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [tags, setTags] = useState(['Arsenal']);
+  const [newLabel, setNewLabel] = useState('');
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=6,9:23
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [tags, setTags] = useState(['Arsenal']);
+  const [newLabel, setNewLabel] = useState('');
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/useTagState.js
+import { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+export default function useTabState() {
+  const [tags, setTags] = useState(['Arsenal']);
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+}
+```
+
+---
+
+```jsx src/useTagState.js focus=5[16:22],23:29
+import { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+export default function useTabState({ initialTags } = {}) {
+  const [tags, setTags] = useState(initialTags || []);
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  return {
+    addTag,
+    moveTagBackward,
+    moveTagForward,
+    removeTagAtIndex,
+    tags,
+  };
+}
+```
+
+---
+
+```jsx src/Tag.js focus=6,9:23
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [tags, setTags] = useState(['Arsenal']);
+  const [newLabel, setNewLabel] = useState('');
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=3,7:8
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import useTagState from './useTagState';
+
+export default function Tag() {
+  const [newLabel, setNewLabel] = useState('');
+  const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
+    useTagState();
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import useTagState from './useTagState';
+
+export default function Tag() {
+  const [newLabel, setNewLabel] = useState('');
+  const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
+    useTagState();
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/useTagState.js
+import { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+export default function useTabState({ initialTags } = {}) {
+  const [tags, setTags] = useState(initialTags || []);
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  return {
+    addTag,
+    moveTagBackward,
+    moveTagForward,
+    removeTagAtIndex,
+    tags,
+  };
+}
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+
+export default function App() {
+  return <Tag />;
+}
+```
+
+---
+
+```jsx src/App.js focus=2,5
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagState = useTagState({ initialTags: ['foo', 'bar'] });
+
+  return <Tag />;
+}
+```
+
+---
+
+```jsx src/App.js focus=7[15:27]
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagState = useTagState({ initialTags: ['foo', 'bar'] });
+
+  return <Tag {...tagState} />;
+}
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  return (
+    <>
+      <Tag {...tagStateA} />
+      <Tag {...tagStateB} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=3,7:8
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import useTagState from './useTagState';
+
+export default function Tag() {
+  const [newLabel, setNewLabel] = useState('');
+  const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
+    useTagState();
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.length &&
+          tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={tags?.length === i + 1}
+                onClick={() => moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleLabelChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleLabelChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  return (
+    <>
+      <Tag {...tagStateA} />
+      <Tag {...tagStateB} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  return (
+    <>
+      <Tag />
+      <Tag {...tagStateB} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=7:11,17
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+  const { removeTagAtIndex, ...tagStateC } = useTagState();
+  function trackDelete(index) {
+    removeTagAtIndex(index);
+    alert(`Deleted tag at index ${index}`);
+  }
+
+  return (
+    <>
+      <Tag />
+      <Tag {...tagStateB} />
+      <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=12:15,22:25
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+  const { removeTagAtIndex, ...tagStateC } = useTagState();
+  function trackDelete(index) {
+    removeTagAtIndex(index);
+    alert(`Deleted tag at index ${index}`);
+  }
+  const tagStateD = useTagState();
+  const { tags } = tagStateD;
+
+  const myUrlParams = new URLSearchParams({ tags });
+
+  return (
+    <>
+      <Tag />
+      <Tag {...tagStateB} />
+      <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
+      <Tag {...tagStateD} />
+      <pre>
+        <code>{myUrlParams.toString()}</code>
+      </pre>
+    </>
+  );
+}
 ```
 
 </CH.Slideshow>
