@@ -1,6 +1,6 @@
 {
   "title": "Portable React State Hooks",
-  "description": "Something to come up with later.",
+  "description": "Have you ever needed to access internal state of a React component? Let's talk about the challenges we face when creating reusable React components at scale.",
   "author": "Brian Espinosa",
   "authorDepartment": "Momentive Analysis",
   "event": "Innovate Summit",
