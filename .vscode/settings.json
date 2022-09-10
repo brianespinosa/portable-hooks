@@ -37,5 +37,12 @@
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "scss"]
+  "stylelint.validate": ["css", "scss"],
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#D9436B",
+    "activityBar.foreground": "#732240",
+    "activityBar.inactiveForeground": "#D9436B",
+    "activityBarBadge.background": "#D9436B",
+    "activityBarBadge.foreground": "#732240"
+  }
 }
