@@ -34,6 +34,8 @@ export default Tags;
 
 </Slide>
 
+0
+
 ---
 
 <Slide>
@@ -48,6 +50,8 @@ My name is Brian Espinosa and I am the Director of Engineering for Momentive Ana
 
 </Slide>
 
+1
+
 ---
 
 <Slide>
@@ -58,22 +62,71 @@ My name is Brian Espinosa and I am the Director of Engineering for Momentive Ana
 
 </Slide>
 
-Understand the problem space before we jump in.
+2
 
 ---
 
-<Slide>
+<Slide isTop>
+
+## Do These Challenges Sound Familar?
+
+</Slide>
+
+3
+
+---
+
+<Slide isTop>
 
 ## Do These Challenges Sound Familar?
 
 - Need to access internal component state or methods
-- Product implementation details require continually increasing component props and complexity
-- Massive unit test suites with difficult logic to isolate prop and state functionality
-- Difficulty composing and reusing across different products due to divergent use cases inside components
 
 </Slide>
 
-Open with question of how many people use React on a daily basis. Ask for hands to stay up with all slide questions.
+4
+
+---
+
+<Slide isTop>
+
+## Do These Challenges Sound Familar?
+
+- Need to access internal component state or methods
+- Growing prop complexity to support competing product use cases
+
+</Slide>
+
+5
+
+---
+
+<Slide isTop>
+
+## Do These Challenges Sound Familar?
+
+- Need to access internal component state or methods
+- Growing prop complexity to support competing product use cases
+- Massive unit tests that must cover prop, state, and UX functionality
+
+</Slide>
+
+6
+
+---
+
+<Slide isTop>
+
+## Do These Challenges Sound Familar?
+
+- Need to access internal component state or methods
+- Growing prop complexity to support competing product use cases
+- Massive unit tests that must cover prop, state, and UX functionality
+- Difficulty composing or reusing components across products with diverging use cases
+
+</Slide>
+
+7
 
 ---
 
@@ -81,15 +134,15 @@ Open with question of how many people use React on a daily basis. Ask for hands 
 
 ## Why Is This a Problem?
 
-Significant impact on productivity, scale, and cost. 💸
+Significant impact on productivity, scale, and cost. 💸 💣 😞
+
+</Slide>
 
 - Multiple component implementations
 - Competing implementation details
 - Less stability at scale
 - Work is slower in complex components
 - This is not fun work! 😞
-
-</Slide>
 
 ---
 
@@ -99,14 +152,48 @@ Significant impact on productivity, scale, and cost. 💸
 
 All of these problems can be significantly reduced or eliminated completely with portable state hooks. 🙌
 
+</Slide>
+
 - Patterns for safely sharing component state
 - Push implementation details into applications
 - Focus on reusability
 - Fuctional programming principles
 
+---
+
+<Slide>
+
+## Example Component
+
+Allows us to add, move, reorder, and <br/> remove tags
+
+<img src="tags.png" alt="Example tag component" style={{ maxWidth: '50%' }} />
+
 </Slide>
 
-For non-React devs, stick around as everyone will reach a better understanding of some of the problems our front end counterparts are facing.
+---
+
+<Slide>
+
+## Example Component
+
+Allows us to add, move, reorder, and <br/> remove dogs
+
+<img
+  src="degs.jpeg"
+  alt=""
+  style={{
+    maxWidth: '30%',
+    position: 'absolute',
+    right: 0,
+    bottom: '4vw',
+    borderRadius: '100%',
+  }}
+/>
+
+<img src="tags.png" alt="Example tag component" style={{ maxWidth: '50%' }} />
+
+</Slide>
 
 ---
 
@@ -118,7 +205,15 @@ For non-React devs, stick around as everyone will reach a better understanding o
 
 </Slide>
 
-Understand the problem space before we jump in.
+---
+
+<Slide>
+
+## Class Components
+
+Thanks for coming to the talk! 👋
+
+</Slide>
 
 ---
 
@@ -138,18 +233,18 @@ export default Tags;
 
 ## Class Components
 
+Relax... class components are okay (sometimes)
+
+<Drawing />
+
+</Slide>
+
 - State belongs to class
 - Methods for setting state 🙏
 - Event handlers
 - Render function
 - Unit tests have to cover everything
 - Hoisting state -> controlled components
-
-<Drawing />
-
-</Slide>
-
-FIRST CODE SLIDE
 
 ---
 
@@ -517,6 +612,104 @@ class Tags extends React.Component {
 
 export default Tags;
 ```
+
+---
+
+```jsx src/Tag.js
+import React from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+class Tags extends React.Component {
+  state = { tags: [], newLabel: '' };
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleLabelChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  render() {
+    return (
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            value={this.state.newLabel}
+            onChange={this.handleLabelChange}
+            placeholder="Add a tag..."
+          />
+        </form>
+        <AnimatePresence>
+          {this.state.tags.map((name, i) => (
+            <m.span
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {name}
+              <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+                ‹
+              </button>
+              <button
+                disabled={this.state.tags?.length === i + 1}
+                onClick={() => this.moveTagBackward(i)}
+              >
+                ›
+              </button>
+              <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+            </m.span>
+          ))}
+        </AnimatePresence>
+      </>
+    );
+  }
+}
+
+export default Tags;
+```
+
+---
+
+<Slide>
+
+## Quick Refactor
+
+Keep our class state/methods in mind 👀
+
+</Slide>
 
 ---
 
@@ -2060,5 +2253,80 @@ export default function App() {
   );
 }
 ```
+
+---
+
+<Slide isTop>
+
+## What Next?
+
+Start using encapsulated, portable custom hooks!
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What Next?
+
+Start using encapsulated, portable custom hooks!
+
+- Find opportunities with new components
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What Next?
+
+Start using encapsulated, portable custom hooks!
+
+- Find opportunities with new components
+- Challenge yourself/team to compare APIs
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What Next?
+
+Start using encapsulated, portable custom hooks!
+
+- Find opportunities with new components
+- Challenge yourself/team to compare APIs
+- Learn from prior art (Reakit, Ariakit, etc.)
+
+</Slide>
+
+---
+
+<Slide columns={2}>
+
+# Appendix
+
+## Built With and Inspired By
+
+- [Code Hike](https://github.com/code-hike/codehike)
+- [Framer Motion](https://github.com/framer/motion)
+- [MDX](https://github.com/mdx-js/mdx)
+- [Next.js](https://github.com/vercel/next.js)
+- [NX](https://github.com/nrwl/nx)
+- [water.css](https://github.com/kognise/water.css)
+- [Reakit](https://reakit.io/)
+- [Ariakit](https://github.com/ariakit/ariakit)
+
+<h1></h1>
+
+## Source and Slides
+
+- [https://portable-hooks.bje.co](https://portable-hooks.bje.co)
+- [GitHub](https://github.com/brianespinosa/portable-hooks)
+
+</Slide>
 
 </CH.Slideshow>
