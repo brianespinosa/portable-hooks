@@ -15,7 +15,7 @@
   "private": true,
   "dependencies": {
     "@bjeco/blocks": "latest",
-    "@code-hike/mdx": "0.7.4",
+    "@code-hike/mdx": "0.7.5-next.0",
     "@mdx-js/loader": "2.1.3",
     "@next/mdx": "12.3.0",
     "clsx": "1.2.1",
