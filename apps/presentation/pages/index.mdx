@@ -405,7 +405,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -490,7 +490,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -544,7 +544,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -560,7 +560,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -610,7 +610,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -626,7 +626,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -698,7 +698,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -714,7 +714,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -796,7 +796,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -812,7 +812,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -849,10 +849,6 @@ export default Tags;
 <Slide isSmall>
 
 ## Function Component
-
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
 
 </Slide>
 
@@ -894,7 +890,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -910,7 +906,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -947,10 +943,6 @@ export default Tags;
 <Slide isSmall>
 
 ## Function Component
-
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
 
 </Slide>
 
@@ -995,7 +987,7 @@ class Tags extends React.Component {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -1011,7 +1003,7 @@ class Tags extends React.Component {
           <input
             type="text"
             value={this.state.newLabel}
-            onChange={this.handleLabelChange}
+            onChange={this.handleInputChange}
             placeholder="Add a tag..."
           />
         </form>
@@ -1049,9 +1041,26 @@ export default Tags;
 
 ## Function Component
 
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
 
 </Slide>
 
@@ -1096,7 +1105,7 @@ export default function Tag() {
     });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -1111,7 +1120,7 @@ export default function Tag() {
         <input
           type="text"
           value={this.state.newLabel}
-          onChange={this.handleLabelChange}
+          onChange={this.handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1146,9 +1155,117 @@ export default function Tag() {
 
 ## Function Component
 
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
+- State now belongs to the component render
+- Initialize with dogs for demo
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=11:37
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  addTag(name) {
+    this.setState({
+      tags: [...this.state.tags, name],
+      newLabel: '',
+    });
+  }
+
+  removeTagAtIndex(index) {
+    this.setState({
+      ...this.state,
+      tags: omitIndexes([index], this.state.tags),
+    });
+  }
+
+  moveTagForward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index - 1, this.state.tags),
+    });
+  }
+
+  moveTagBackward(index) {
+    this.setState({
+      ...this.state,
+      tags: move(index, index + 1, this.state.tags),
+    });
+  }
+
+  handleInputChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
 
 </Slide>
 
@@ -1181,7 +1298,7 @@ export default function Tag() {
     setState({ ...state, tags: move(index, index + 1, state.tags) });
   }
 
-  handleLabelChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ ...this.state, newLabel: event.target.value });
   };
 
@@ -1196,7 +1313,7 @@ export default function Tag() {
         <input
           type="text"
           value={this.state.newLabel}
-          onChange={this.handleLabelChange}
+          onChange={this.handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1231,9 +1348,22 @@ export default function Tag() {
 
 ## Function Component
 
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
 
 </Slide>
 
@@ -1266,12 +1396,12 @@ export default function Tag() {
     setState({ ...state, tags: move(index, index + 1, state.tags) });
   }
 
-  const handleLabelChange = (event) => {
-    setState({ ...state, newLabel: event.target.value });
+  handleInputChange = (event) => {
+    this.setState({ ...this.state, newLabel: event.target.value });
   };
 
-  const handleSubmit = (event) => {
-    addTag(state.newLabel);
+  handleSubmit = (event) => {
+    this.addTag(this.state.newLabel);
     event.preventDefault();
   };
 
@@ -1281,7 +1411,7 @@ export default function Tag() {
         <input
           type="text"
           value={this.state.newLabel}
-          onChange={this.handleLabelChange}
+          onChange={this.handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1316,9 +1446,197 @@ export default function Tag() {
 
 ## Function Component
 
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=27:34
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleInputChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+- Handlers keep arrow functions for binding
+
+</Slide>
+
+---
+
+```jsx src/Tag.js focus=38:67
+import React, { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag() {
+  const [state, setState] = useState({
+    tags: ['Rocket', 'Pogo', 'Franco'],
+    newLabel: '',
+  });
+
+  function addTag(name) {
+    setState({ tags: [...state.tags, name], newLabel: '' });
+  }
+
+  function removeTagAtIndex(index) {
+    setState({ ...state, tags: omitIndexes([index], state.tags) });
+  }
+
+  function moveTagForward(index) {
+    setState({ ...state, tags: move(index, index - 1, state.tags) });
+  }
+
+  function moveTagBackward(index) {
+    setState({ ...state, tags: move(index, index + 1, state.tags) });
+  }
+
+  const handleInputChange = (event) => {
+    setState({ ...state, newLabel: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    addTag(state.newLabel);
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value={this.state.newLabel}
+          onChange={this.handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {this.state.tags.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => this.moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={this.state.tags?.length === i + 1}
+              onClick={() => this.moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => this.removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+- Handlers keep arrow functions for binding
 
 </Slide>
 
@@ -1351,7 +1669,7 @@ export default function Tag() {
     setState({ ...state, tags: move(index, index + 1, state.tags) });
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setState({ ...state, newLabel: event.target.value });
   };
 
@@ -1366,7 +1684,7 @@ export default function Tag() {
         <input
           type="text"
           value={state.newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1402,9 +1720,26 @@ export default function Tag() {
 
 ## Function Component
 
-- State hook belongs to render
-- Utility setting functions
-- Event handlers
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+- Handlers keep arrow functions for binding
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Function Component
+
+- State now belongs to the component render
+- Initialize with dogs for demo
+- Class becomes function
+- Methods become functions
+- Handlers keep arrow functions for binding
+- No more "this"
 
 </Slide>
 
@@ -1437,7 +1772,7 @@ export default function Tag() {
     setState({ ...state, tags: move(index, index + 1, state.tags) });
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setState({ ...state, newLabel: event.target.value });
   };
 
@@ -1452,7 +1787,7 @@ export default function Tag() {
         <input
           type="text"
           value={state.newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1486,29 +1821,222 @@ export default function Tag() {
 
 ---
 
-<Slide isSmall>
+<Slide>
 
-## Most Common Function Component
+# Let's Start the Talk
 
-- Uncontrolled with internal state and some props
-- Prop surface area continues to grow as we need to give access inside the component
-- Logic becomes increasingly complex once we have a 🔥 Propocalypse™
-- Have to balance functionality both controlled and uncontrolled component styles
-- Begin to rely on anti-patterns passing state back up the tree
+## Finally...
 
 </Slide>
 
 ---
 
-<Slide isSmall>
+<Slide isTop>
+
+## Common Function Component Issues
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## Common Function Component Issues
+
+- Begin as uncontrolled pattern 🌞 🕊
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## Common Function Component Issues
+
+- Begin as uncontrolled pattern 🌞 🕊
+- Competing feature requests... 🌥
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## Common Function Component Issues
+
+<img
+  src="https://c.tenor.com/-kZOB16tELEAAAAM/this-is-fine-fire.gif"
+  alt="This Is Fine"
+  style={{ position: 'absolute', right: 0, top: '30vw', width: '35vw' }}
+/>
+
+- Begin as uncontrolled pattern 🌞 🕊
+- Competing feature requests... 🌥
+- Propocalypse™
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## Common Function Component Issues
+
+<img
+  src="https://c.tenor.com/-kZOB16tELEAAAAM/this-is-fine-fire.gif"
+  alt="This Is Fine"
+  style={{ position: 'absolute', right: 0, top: '30vw', width: '35vw' }}
+/>
+
+- Begin as uncontrolled pattern 🌞 🕊
+- Competing feature requests... 🌥
+- Propocalypse™
+- Imperative instead of declarative
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## Common Function Component Issues
+
+<img
+  src="https://c.tenor.com/-kZOB16tELEAAAAM/this-is-fine-fire.gif"
+  alt="This Is Fine"
+  style={{ position: 'absolute', right: 0, top: '30vw', width: '35vw' }}
+/>
+
+- Begin as uncontrolled pattern 🌞 🕊
+- Competing feature requests... 🌥
+- Propocalypse™
+- Imperative instead of declarative
+- Increasingly complex tests
+
+</Slide>
+
+---
+
+<Slide isTop>
 
 ## What If We Only Made Controlled Components?
 
-- Component logic becomes more simple
-- Chances for a Propocalypse™ are reduced
-- But... how do we still help developers do their jobs?
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What If We Only Made Controlled Components?
+
+- API surface area significantly reduced
 
 </Slide>
+
+---
+
+<Slide isTop>
+
+## What If We Only Made Controlled Components?
+
+- API surface area significantly reduced
+- Testing becomes easier
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What If We Only Made Controlled Components?
+
+- API surface area significantly reduced
+- Testing becomes easier
+- Prop mismatch errors less likely
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+- Create encapsulated custom hooks
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+- Create encapsulated custom hooks
+- Take state out of components
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+- Create encapsulated custom hooks
+- Take state out of components
+- Ship separate components and state hooks
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+- Create encapsulated custom hooks
+- Take state out of components
+- Ship separate components and state hooks
+- Tests scoped to props/state
+
+</Slide>
+
+---
+
+<Slide isTop>
+
+## What About State?
+
+- Create encapsulated custom hooks
+- Take state out of components
+- Ship separate components and state hooks
+- Tests scoped to props/state
+- Declarative instead of imperative
+
+</Slide>
+
+---
+
+<Slide>
+
+# Back To the Code
+
+## Prove it...
+
+</Slide>
+
+---
+
+Right where we left it
 
 ---
 
@@ -1539,7 +2067,7 @@ export default function Tag() {
     setState({ ...state, tags: move(index, index + 1, state.tags) });
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setState({ ...state, newLabel: event.target.value });
   };
 
@@ -1554,7 +2082,7 @@ export default function Tag() {
         <input
           type="text"
           value={state.newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1586,9 +2114,17 @@ export default function Tag() {
 }
 ```
 
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+</Slide>
+
 ---
 
-```jsx src/Tag.js
+```jsx src/Tag.js focus=6,7,10,14,18,22,26,30,31
 import React, { useState } from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 import { AnimatePresence, m } from 'framer-motion';
@@ -1613,7 +2149,7 @@ export default function Tag() {
     setTags(move(index, index + 1, tags));
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -1629,7 +2165,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1660,6 +2196,39 @@ export default function Tag() {
   );
 }
 ```
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+
+</Slide>
 
 ---
 
@@ -1688,7 +2257,7 @@ export default function Tag() {
     setTags(move(index, index + 1, tags));
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -1704,7 +2273,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1735,6 +2304,17 @@ export default function Tag() {
   );
 }
 ```
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+
+</Slide>
 
 ---
 
@@ -1763,9 +2343,34 @@ export default function useTabState() {
 }
 ```
 
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+
+</Slide>
+
 ---
 
-```jsx src/useTagState.js focus=5[16:22],23:29
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+
+</Slide>
+
+---
+
+```jsx src/useTagState.js focus=23:29
 import { useState } from 'react';
 import { omitIndexes, move } from 'ramda-adjunct';
 
@@ -1798,6 +2403,97 @@ export default function useTabState({ initialTags } = {}) {
 }
 ```
 
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+
+</Slide>
+
+---
+
+```jsx src/useTagState.js focus=5[16:22]
+import { useState } from 'react';
+import { omitIndexes, move } from 'ramda-adjunct';
+
+export default function useTabState({ initialTags } = {}) {
+  const [tags, setTags] = useState(initialTags || []);
+
+  function addTag(name) {
+    setTags([...tags, name]);
+  }
+
+  function removeTagAtIndex(index) {
+    setTags(omitIndexes([index], tags));
+  }
+
+  function moveTagForward(index) {
+    setTags(move(index, index - 1, tags));
+  }
+
+  function moveTagBackward(index) {
+    setTags(move(index, index + 1, tags));
+  }
+
+  return {
+    addTag,
+    moveTagBackward,
+    moveTagForward,
+    removeTagAtIndex,
+    tags,
+  };
+}
+```
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+- Do NOT return state setter directly ⚠️
+
+</Slide>
+
 ---
 
 ```jsx src/Tag.js focus=6,9:23
@@ -1825,7 +2521,7 @@ export default function Tag() {
     setTags(move(index, index + 1, tags));
   }
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -1841,7 +2537,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1872,6 +2568,20 @@ export default function Tag() {
   );
 }
 ```
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+- Do NOT return state setter directly ⚠️
+
+</Slide>
 
 ---
 
@@ -1885,7 +2595,7 @@ export default function Tag() {
   const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
     useTagState();
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -1901,7 +2611,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -1933,6 +2643,56 @@ export default function Tag() {
 }
 ```
 
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+- Do NOT return state setter directly ⚠️
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+- Do NOT return state setter directly ⚠️
+- Replace with custom hook
+
+</Slide>
+
+---
+
+<Slide isSmall>
+
+## Custom Hook
+
+Remember our class component?
+
+- State no longer needs to be singular object
+- Improved semantics
+- Encapsulate state logic
+- Return state and setter methods
+- Do NOT return state setter directly ⚠️
+- Replace with custom hook
+
+Let's take a look...
+
+</Slide>
+
 ---
 
 ```jsx src/Tag.js
@@ -1945,7 +2705,7 @@ export default function Tag() {
   const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
     useTagState();
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -1961,7 +2721,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -2027,6 +2787,16 @@ export default function useTabState({ initialTags } = {}) {
   };
 }
 ```
+
+---
+
+<Slide isSmall>
+
+## Hoist State
+
+Make our custom hook portable
+
+</Slide>
 
 ---
 
@@ -2095,7 +2865,7 @@ export default function Tag() {
   const { addTag, moveTagBackward, moveTagForward, removeTagAtIndex, tags } =
     useTagState();
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -2111,7 +2881,7 @@ export default function Tag() {
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -2158,7 +2928,7 @@ export default function Tag({
 } = {}) {
   const [newLabel, setNewLabel] = useState('');
 
-  const handleLabelChange = (event) => {
+  const handleInputChange = (event) => {
     setNewLabel(event.target.value);
   };
 
@@ -2174,7 +2944,7 @@ export default function Tag({
         <input
           type="text"
           value={newLabel}
-          onChange={handleLabelChange}
+          onChange={handleInputChange}
           placeholder="Add a tag..."
         />
       </form>
@@ -2207,6 +2977,16 @@ export default function Tag({
 
 ---
 
+<Slide>
+
+## Examples
+
+Let's see it in action
+
+</Slide>
+
+---
+
 ```jsx src/App.js
 import Tag from './Tag';
 import useTagState from './useTagState';
@@ -2226,7 +3006,7 @@ export default function App() {
 
 ---
 
-```jsx src/App.js
+```jsx src/App.js focus=10,11
 import Tag from './Tag';
 import useTagState from './useTagState';
 
@@ -2236,6 +3016,7 @@ export default function App() {
 
   return (
     <>
+      <h2>No State</h2>
       <Tag />
       <Tag {...tagStateB} />
     </>
@@ -2245,23 +3026,28 @@ export default function App() {
 
 ---
 
-```jsx src/App.js focus=7:11,17
+```jsx src/App.js focus=8:13,21,22
 import Tag from './Tag';
 import useTagState from './useTagState';
 
 export default function App() {
   const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
   const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  // External implementation details
   const { removeTagAtIndex, ...tagStateC } = useTagState();
   function trackDelete(index) {
     removeTagAtIndex(index);
-    alert(`Deleted tag at index ${index}`);
+    alert(`Deleted ${tagStateC.tags[index]} at index ${index}`);
   }
 
   return (
     <>
+      <h2>No State</h2>
       <Tag />
       <Tag {...tagStateB} />
+
+      <h2>Insert Logic</h2>
       <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
     </>
   );
@@ -2270,32 +3056,94 @@ export default function App() {
 
 ---
 
-```jsx src/App.js focus=12:15,22:25
+```jsx src/App.js focus=15:18,29:33
 import Tag from './Tag';
 import useTagState from './useTagState';
 
 export default function App() {
   const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
   const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  // External implementation details
   const { removeTagAtIndex, ...tagStateC } = useTagState();
   function trackDelete(index) {
     removeTagAtIndex(index);
-    alert(`Deleted tag at index ${index}`);
+    alert(`Deleted ${tagStateC.tags[index]} at index ${index}`);
   }
+
+  // Place state where it is needed in the React tree
   const tagStateD = useTagState();
   const { tags } = tagStateD;
-
   const myUrlParams = new URLSearchParams({ tags });
 
   return (
     <>
+      <h2>No State</h2>
       <Tag />
       <Tag {...tagStateB} />
+
+      <h2>Insert Logic</h2>
       <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
+
+      <h2>Hoist State</h2>
       <Tag {...tagStateD} />
       <pre>
         <code>{myUrlParams.toString()}</code>
       </pre>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=20:25,42:46
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  // External implementation details
+  const { removeTagAtIndex, ...tagStateC } = useTagState();
+  function trackDelete(index) {
+    removeTagAtIndex(index);
+    alert(`Deleted ${tagStateC.tags[index]} at index ${index}`);
+  }
+
+  // Place state where it is needed in the React tree
+  const tagStateD = useTagState();
+  const { tags } = tagStateD;
+  const myUrlParams = new URLSearchParams({ tags });
+
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>No State</h2>
+      <Tag />
+      <Tag {...tagStateB} />
+
+      <h2>Insert Logic</h2>
+      <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
+
+      <h2>Hoist State</h2>
+      <Tag {...tagStateD} />
+      <pre>
+        <code>{myUrlParams.toString()}</code>
+      </pre>
+
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag {...tagStateE} />
     </>
   );
 }
