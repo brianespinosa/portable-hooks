@@ -1665,9 +1665,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@code-hike/mdx@npm:0.7.4":
-  version: 0.7.4
-  resolution: "@code-hike/mdx@npm:0.7.4"
+"@code-hike/mdx@npm:0.7.5-next.0":
+  version: 0.7.5-next.0
+  resolution: "@code-hike/mdx@npm:0.7.5-next.0"
   dependencies:
     hast-util-to-estree: ^1.4.0
     is-plain-obj: ^3.0.0
@@ -1679,7 +1679,7 @@ __metadata:
     unist-util-visit-parents: ^3.0.0
   peerDependencies:
     react: ^16.8.3 || ^17 || ^18
-  checksum: 90805a07d56877d502d2034101206962d41d41ad7820e06c5e6e7daa5e7e7589778285471b42de2b6024d5cd207c530b4201922cd64153697ce9b9a7a91fe081
+  checksum: 8f5fc6093ab1f6b1401ce2b1037e66a9b0c24bc76822a900f41bb0b56e6ca8074deb436131379757f49cae9eb5a4f530ed4c09e304d00b436bddd5285f1a71c9
   languageName: node
   linkType: hard
 
@@ -13554,7 +13554,7 @@ __metadata:
     "@angular-devkit/schematics": 14.2.2
     "@babel/core": 7.19.0
     "@bjeco/blocks": latest
-    "@code-hike/mdx": 0.7.4
+    "@code-hike/mdx": 0.7.5-next.0
     "@mdx-js/loader": 2.1.3
     "@mdx-js/react": 2.1.3
     "@next/mdx": 12.3.0

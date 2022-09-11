@@ -1,6 +1,9 @@
 ._ {
   &:global.react-flow {
-    margin: 0;
+    position: absolute;
+    bottom: 0;
+    max-height: 60%;
+    margin: 0 !important;
   }
 
   :global {
