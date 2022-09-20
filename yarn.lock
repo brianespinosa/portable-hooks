@@ -1490,7 +1490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bjeco/blocks@npm:latest":
+"@bjeco/blocks@npm:0.0.4":
   version: 0.0.4
   resolution: "@bjeco/blocks@npm:0.0.4"
   dependencies:
@@ -13075,7 +13075,7 @@ __metadata:
   dependencies:
     "@angular-devkit/schematics": 14.2.3
     "@babel/core": 7.19.1
-    "@bjeco/blocks": latest
+    "@bjeco/blocks": 0.0.4
     "@code-hike/mdx": 0.7.5-next.0
     "@mdx-js/loader": 2.1.3
     "@mdx-js/react": 2.1.3
