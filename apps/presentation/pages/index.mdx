@@ -3283,10 +3283,864 @@ Source and Slides
 
 <Slide columns={2}>
 
+<Logo />
+
 # Thank You!
 
 ## Questions?
 
 </Slide>
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  const tagStateA = useTagState({ initialTags: ['foo', 'bar'] });
+  const tagStateB = useTagState({ initialTags: ['baz', 'bat'] });
+
+  // External implementation details
+  const { removeTagAtIndex, ...tagStateC } = useTagState();
+  function trackDelete(index) {
+    removeTagAtIndex(index);
+    alert(`Deleted ${tagStateC.tags[index]} at index ${index}`);
+  }
+
+  // Place state where it is needed in the React tree
+  const tagStateD = useTagState();
+  const { tags } = tagStateD;
+  const myUrlParams = new URLSearchParams({ tags });
+
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>No State</h2>
+      <Tag />
+      <Tag {...tagStateB} />
+
+      <h2>Insert Logic</h2>
+      <Tag {...tagStateC} removeTagAtIndex={trackDelete} />
+
+      <h2>Hoist State</h2>
+      <Tag {...tagStateD} />
+      <pre>
+        <code>{myUrlParams.toString()}</code>
+      </pre>
+
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag {...tagStateE} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag {...tagStateE} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=18,19
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      {/* Can't separate the input from the tags */}
+      <Tag {...tagStateE} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=25:33
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=11:21,25:33
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/TagInput.js
+import React, { useState } from 'react';
+
+export default function TagInput({ addTag } = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+    </>
+  );
+}
+
+TagInput.displayName = 'Tag.Input';
+```
+
+---
+
+```jsx src/Tag.js focus=34:55
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/TagTags.js
+import React from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function TagTags({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  return (
+    <AnimatePresence>
+      {tags?.map((name, i) => (
+        <m.span
+          key={i}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {name}
+          <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+            ‹
+          </button>
+          <button
+            disabled={tags?.length === i + 1}
+            onClick={() => moveTagBackward(i)}
+          >
+            ›
+          </button>
+          <button onClick={() => removeTagAtIndex(i)}>✕</button>
+        </m.span>
+      ))}
+    </AnimatePresence>
+  );
+}
+
+TagTags.displayName = 'Tag.Tags';
+```
+
+---
+
+```jsx src/Tag.js
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=3,4
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=13:23,28:35
+import React, { useState } from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  const [newLabel, setNewLabel] = useState('');
+
+  const handleInputChange = (event) => {
+    setNewLabel(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    addTag?.(newLabel);
+    setNewLabel('');
+    event.preventDefault();
+  };
+
+  return (
+    <>
+      {/* Not very declarative */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newLabel}
+          onChange={handleInputChange}
+          placeholder="Add a tag..."
+        />
+      </form>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  return (
+    <>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js focus=15:36
+import React from 'react';
+import { AnimatePresence, m } from 'framer-motion';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({
+  addTag,
+  moveTagBackward,
+  moveTagForward,
+  removeTagAtIndex,
+  tags,
+} = {}) {
+  return (
+    <>
+      <AnimatePresence>
+        {tags?.map((name, i) => (
+          <m.span
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {name}
+            <button disabled={i === 0} onClick={() => moveTagForward(i)}>
+              ‹
+            </button>
+            <button
+              disabled={tags?.length === i + 1}
+              onClick={() => moveTagBackward(i)}
+            >
+              ›
+            </button>
+            <button onClick={() => removeTagAtIndex(i)}>✕</button>
+          </m.span>
+        ))}
+      </AnimatePresence>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React from 'react';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({ children, ...rest } = {}) {
+  return <div {...rest}>{children}</div>;
+}
+```
+
+---
+
+```jsx src/Tag.js
+import React from 'react';
+import TagInput from './TagInput';
+import TagTags from './TagTags';
+
+export default function Tag({ children, ...rest } = {}) {
+  return <div {...rest}>{children}</div>;
+}
+
+Tag.Input = TagInput;
+Tag.Tags = TagTags;
+```
+
+---
+
+```jsx src/App.js
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag {...tagStateE} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=18
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>External Control</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag {...tagStateE} />
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=18:21
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>Declarative Subcomponents</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag>
+        <Tag.Input {...tagStateE} />
+        <Tag.Tags {...tagStateE} />
+      </Tag>
+    </>
+  );
+}
+```
+
+---
+
+```jsx src/App.js focus=18:21
+import Tag from './Tag';
+import useTagState from './useTagState';
+
+export default function App() {
+  // Control Externally
+  const tagStateE = useTagState();
+  const handleCreateTag = (event) => {
+    const { addTag } = tagStateE;
+    addTag(event.target.textContent);
+  };
+
+  return (
+    <>
+      <h2>Declarative Subcomponents</h2>
+      <button onClick={handleCreateTag}>Rocket</button>
+      <button onClick={handleCreateTag}>Franco</button>
+      <button onClick={handleCreateTag}>Pogo</button>
+      <Tag>
+        <Tag.Tags {...tagStateE} />
+      </Tag>
+    </>
+  );
+}
+```
 
 </CH.Slideshow>
