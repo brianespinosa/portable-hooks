@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
+import clsx from 'clsx';
 import styles from './logo.module.scss';
 
-export function Logo() {
+export function Logo({ isLarge = false }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 900 551.27"
-      className={styles._}
+      className={clsx(styles._, isLarge && styles.large)}
     >
       <path
         fill="#2cb2f1"
