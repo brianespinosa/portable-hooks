@@ -4,4 +4,8 @@
   right: 4vw;
   width: 30vw;
   margin: 0;
+
+  &.large {
+    width: 45vw;
+  }
 }
